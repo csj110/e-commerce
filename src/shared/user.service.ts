@@ -37,7 +37,7 @@ export class UserService {
     }
 
     if (await bcrypt.compare(password, user.password)) {
-      return user.depopulate('password');
+      return this.sanitizeUser(user);
     } else {
       throw new HttpException('invalid credential', HttpStatus.UNAUTHORIZED);
     }
