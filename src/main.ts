@@ -5,6 +5,7 @@ import 'dotenv/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
   await app.listen(3000);
   Logger.log('http://localhost:3000');
 }

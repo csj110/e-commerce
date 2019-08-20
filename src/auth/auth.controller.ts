@@ -1,9 +1,11 @@
 import { AuthService } from './auth.service';
-import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards, Logger } from '@nestjs/common';
 import { UserService } from '../shared/user.service';
 import { LoginDTO, RegisterDTO } from './auth.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Payload } from '@src/types/payload';
+import { User } from '@src/utilities/user.decorator';
+import { SellerGuard } from '@src/shared/seller.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -12,12 +14,11 @@ export class AuthController {
     private authSerivce: AuthService
   ) {}
 
+  // TODO used for test will be deleted
   @Get()
-  @UseGuards(AuthGuard('jwt'))
-  tempAuth() {
-    return {
-      auth: 'works'
-    };
+  @UseGuards(AuthGuard('jwt'), SellerGuard)
+  tempAuth(@User() user) {
+    return user;
   }
 
   @Post('login')

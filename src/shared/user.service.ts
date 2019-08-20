@@ -26,7 +26,7 @@ export class UserService {
     }
     user = new this.userModel(userDTO);
     await user.save();
-    return this.sanitizeUser(user);
+    return user.populate('password');
   }
 
   async findByLogin(userDTO: LoginDTO) {

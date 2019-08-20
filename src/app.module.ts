@@ -3,17 +3,23 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SharedModule } from './shared/shared.module';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpExceptionFilter } from './shared/http-exception.filter';
 import { AuthModule } from './auth/auth.module';
+import { LoggingInterceptor } from './shared/logging.interceptor';
+import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
 import 'dotenv/config';
+
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URL, {
       useNewUrlParser: true
     }),
     SharedModule,
-    AuthModule
+    AuthModule,
+    ProductModule,
+    OrderModule
   ],
   controllers: [AppController],
   providers: [
@@ -21,6 +27,10 @@ import 'dotenv/config';
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor
     }
   ]
 })

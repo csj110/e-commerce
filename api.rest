@@ -1,13 +1,24 @@
 
-GET http://localhost:3000 HTTP/1.1
+GET http://localhost:3000/api HTTP/1.1
 
 
 ###
-GET http://localhost:3000/auth HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMSIsInNlbGxlciI6ZmFsc2UsImlhdCI6MTU2NjIyMjkxNywiZXhwIjoxNTY2ODI3NzE3fQ.5rvXTT0xFY1unO8Jen2WQjfPKDcU2BI63387L4X7EYA
+GET http://localhost:3000/api/auth HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
 
 ###
-POST http://localhost:3000/auth/register HTTP/1.1
+POST http://localhost:3000/api/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "username":"usernamer",
+  "password":"password",
+  "seller":"true"
+}
+
+
+###
+POST http://localhost:3000/api/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
@@ -17,10 +28,54 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3000/auth/login HTTP/1.1
+GET http://localhost:3000/api/product/all HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
+
+###
+GET http://localhost:3000/api/product/:id HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
+
+###
+GET http://localhost:3000/api/product/mine HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
+
+###
+GET http://localhost:3000/api/product/seller/:id HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
+
+
+###
+POST http://localhost:3000/api/product HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
 
 {
-  "username":"username1",
-  "password":"password"
+  "title": "cool",
+  "desc": "foajf",
+  "image":"fajf",
+  "price": "fajf"
 }
+###
+PUT http://localhost:3000/api/product/5d5ba8f0ce302813c84d6e89 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
+
+{
+  "title": "coogsa",
+  "image":"fajfgs",
+  "price": "fajfsg"
+}
+###
+DELETE http://localhost:3000/api/product/:id HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lOSIsInNlbGxlciI6dHJ1ZSwiaWF0IjoxNTY2MjY1MjI4LCJleHAiOjE1NjY4NzAwMjh9.xtZvhvafyNdahT3Fgl9witR0a-sksvGnbfrSkBrIvNs
+
+
+###
+GET http://localhost:3000/api/product HTTP/1.1
+Content-Type: application/json
+

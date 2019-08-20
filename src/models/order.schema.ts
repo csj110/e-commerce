@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const OrderSChema = new mongoose.Schema({
+export const OrderSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
